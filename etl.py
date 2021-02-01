@@ -37,7 +37,7 @@ def process_song_data(spark, input_data, output_data):
     """
     
     # get filepath to song data file
-    song_data = os.path.join(input_data, 'song_data/A/A/A/*.json')
+    song_data = os.path.join(input_data, 'song_data/*/*/*/*.json')
     
     # read song data file
     df = spark.read.json(song_data)
@@ -161,7 +161,9 @@ def main():
     
     spark = create_spark_session()
     input_data = "s3a://udacity-dend/"
+    # input_data = "/workspaces/DEND-DataLakes/data/input"
     output_data = "s3a://goose-sparkify-dend/"
+    # output_data = "/workspaces/DEND-DataLakes/data/output"
     
     process_song_data(spark, input_data, output_data)
     process_log_data(spark, input_data, output_data)
